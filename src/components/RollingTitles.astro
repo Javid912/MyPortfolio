@@ -1,0 +1,42 @@
+---
+interface Props {
+  titles: string[];
+  transitionTime?: number;
+}
+
+const { titles, transitionTime = 5000 } = Astro.props; // Longer display time
+---
+
+<div class="rolling-titles relative h-8 overflow-hidden">
+  {titles.map((title) => (
+    <div class="title absolute w-full text-center opacity-0 transition-opacity duration-1000">
+      {title}
+    </div>
+  ))}
+</div>
+
+<script define:vars={{ titles, transitionTime }}>
+  const titleElements = document.querySelectorAll('.rolling-titles .title');
+  let currentIndex = 0;
+
+  function showNextTitle() {
+    // Fade out current title
+    titleElements.forEach((el) => {
+      el.style.transition = 'opacity 1s ease-out';
+      el.classList.remove('opacity-100');
+    });
+
+    // Wait for fade out, then show next title
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % titles.length;
+      titleElements[currentIndex].style.transition = 'opacity 1s ease-in';
+      titleElements[currentIndex].classList.add('opacity-100');
+    }, 1000);
+  }
+
+  // Show first title
+  titleElements[0].classList.add('opacity-100');
+  
+  // Start rotation after initial display
+  setInterval(showNextTitle, transitionTime);
+</script>

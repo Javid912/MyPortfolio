@@ -1,0 +1,252 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TrendingRepos from '../components/TrendingRepos.astro';
+import TypewriterText from '../components/TypewriterText.astro';
+import RollingTitles from '../components/RollingTitles.astro';
+import TechStack from '../components/TechStack.astro';
+import AnimatedHero from '../components/AnimatedHero.astro';
+import { getLatestPosts } from '../utils/blog';
+
+const latestPosts = await getLatestPosts();
+---
+
+<Layout title="Your Name - Software & AI Engineer">
+  <main class="text-white">
+    <!-- Hero Section -->
+    <AnimatedHero>
+      <h1 class="text-7xl md:text-8xl font-bold text-white mb-4 tracking-tight">
+        <TypewriterText words={[
+          "Let's Build Something Amazing",
+          "Have an Innovative Idea? Let's Talk",
+          "Need to Automate Your Workflow?",
+          "Want to Leverage AI in Your Business?",
+          "Looking for Technical Solutions?",
+          "Ready to Transform Your Ideas into Reality?"
+        ]} typingSpeed={80} deletingSpeed={40} pauseTime={3000} />
+      </h1>
+    </AnimatedHero>
+
+    <!-- Services Section -->
+    <section class="py-24">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold glow-text mb-6">Professional Services 🚀</h2>
+          <p class="text-white/90 text-xl max-w-3xl mx-auto">
+            Empowering businesses with cutting-edge AI solutions and expert software development services.
+            Let's collaborate to turn your vision into reality.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-16">
+          <ServiceCard
+            title="AI Solutions Development"
+            description="Custom AI solutions tailored to your business needs, from chatbots to advanced analytics systems."
+            icon="🤖"
+            features={[
+              "LLM-powered Applications",
+              "Custom AI Agents & Assistants",
+              "Natural Language Processing",
+              "Machine Learning Integration",
+              "AI Strategy Consulting"
+            ]}
+          />
+
+          <ServiceCard
+            title="Data Engineering"
+            description="End-to-end data solutions that transform your raw data into actionable insights."
+            icon="📊"
+            features={[
+              "ETL Pipeline Development",
+              "Data Warehouse Design",
+              "Real-time Analytics",
+              "Data Quality Management",
+              "Cloud Data Solutions"
+            ]}
+          />
+
+          <ServiceCard
+            title="Software Development"
+            description="Full-stack development services with a focus on scalable, modern applications."
+            icon="💻"
+            features={[
+              "Web Application Development",
+              "API Design & Integration",
+              "Cloud-native Solutions",
+              "DevOps Implementation",
+              "Technical Architecture"
+            ]}
+          />
+
+          <ServiceCard
+            title="AI Consulting"
+            description="Strategic guidance on implementing AI solutions and maximizing their impact."
+            icon="🎯"
+            features={[
+              "AI Readiness Assessment",
+              "Technology Stack Selection",
+              "POC Development",
+              "AI Integration Strategy",
+              "Team Training & Support"
+            ]}
+          />
+
+          <ServiceCard
+            title="Process Automation"
+            description="Streamline operations with intelligent automation solutions."
+            icon="🔄"
+            features={[
+              "Workflow Automation",
+              "RPA Implementation",
+              "Business Process Optimization",
+              "Integration Solutions",
+              "Automated Testing"
+            ]}
+          />
+
+          <ServiceCard
+            title="Technical Consulting"
+            description="Expert guidance on technology decisions and implementation strategies."
+            icon="🌐"
+            features={[
+              "Architecture Review",
+              "Tech Stack Modernization",
+              "Performance Optimization",
+              "Security Assessment",
+              "Cloud Migration Strategy"
+            ]}
+          />
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-16">
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-discord-blurple text-white rounded-xl font-semibold text-lg hover:bg-discord-blurple/90 transform hover:scale-105 transition-all duration-300"
+          >
+            Start a Project
+            <span class="text-2xl">→</span>
+          </a>
+          <p class="text-white/80 mt-4">
+            Let's discuss how I can help bring your ideas to life
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="py-24">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center glow-text">Tech Stack ⚡</h2>
+        <TechStack />
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center glow-text">Featured Projects 🚀</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <ProjectCard
+            title="LongChain Agent"
+            description="A fully functional agent that uses an LLM to decide which tools to use. It is equipped with ageneric search tool and has conversational memory."
+            tags={['Python', 'AI', 'LLM', 'LangChain']}
+            github="https://github.com/Javid912/LongChain_Agent"
+            status="Public"
+            lastUpdated="5 hours ago"
+            isHighlighted={true}
+          />
+          <ProjectCard
+            title="AI Shopping Advisor"
+            description="A Telegram bot that helps track groceries, expiration dates, and provides smart shopping suggestions"
+            tags={['Python', 'AI', 'Telegram', 'LangChain']}
+            github="https://github.com/Javid912/AI-shopping-advisor"
+            status="Public"
+            lastUpdated="Yesterday"
+            isHighlighted={true}
+          />
+          <ProjectCard
+            title="Multilingual AI Chatbot"
+            description="A web-based chatbot that can understand and respond in multiple languages (English, German, and Farsi)"
+            tags={['Python', 'AI', 'NLP', 'LangChain']}
+            github="https://github.com/Javid912/multilingual-ai-chatbot"
+            status="Public"
+            lastUpdated="3 days ago"
+          />
+          <ProjectCard
+            title="Retail Data Pipeline"
+            description="ETL project with Docker Astro CLI, dbt, Soda Google Cloud account and more"
+            tags={['Python', 'Airflow', 'dbt', 'GCP', 'Docker']}
+            github="https://github.com/Javid912/Retail_Data_Pipeline_Airflow_GCP_dbt"
+            status="Public"
+            lastUpdated="Last week"
+          />
+          <ProjectCard
+            title="Bookstore Data Warehouse"
+            description="Comprehensive data warehouse for a bookstore chain, featuring automated ETL processes and dimensional modeling"
+            tags={['ETL', 'SQL', 'Python', 'Analytics']}
+            github="https://github.com/Javid912/bookstore-data-warehouse-project"
+            status="Public"
+            lastUpdated="2 weeks ago"
+          />
+          <ProjectCard
+            title="German Used Cars Analysis"
+            description="A PostgreSQL database analysis of AutoScout24 dataset, providing insights into the German used car market"
+            tags={['PostgreSQL', 'Python', 'Analytics']}
+            github="https://github.com/Javid912/german_used_cars_analysis"
+            status="Private"
+            lastUpdated="Nov 10, 2024"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Open Source Section -->
+    <section class="py-24">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold glow-text">Latest Innovations 🚀</h2>
+          <p class="text-white/90 mt-4 text-xl">
+            Building the future with AI, Data Engineering, and Modern Tech
+          </p>
+        </div>
+        <TrendingRepos />
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-12 glow-text">Let's Connect! 👋</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://github.com/Javid912" class="btn-secondary">
+            <span class="mr-2">GitHub</span> 
+            <span class="text-2xl">👨‍💻</span>
+          </a>
+          <a href="https://www.linkedin.com/in/javadsatoungar" class="btn-secondary">
+            <span class="mr-2">LinkedIn</span>
+            <span class="text-2xl">💼</span>
+          </a>
+          <a href="https://t.me/Javid913" class="btn-secondary">
+            <span class="mr-2">Telegram</span>
+            <span class="text-2xl">✈️</span>
+          </a>
+          <a href="mailto:javad.dev.912@gmail.com" class="btn-secondary">
+            <span class="mr-2">Email</span>
+            <span class="text-2xl">📧</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .btn-secondary {
+    @apply inline-block px-8 py-3 bg-discord-dark/50 border-2 border-discord-blurple text-white 
+           rounded-full font-semibold transition-all duration-300 hover:bg-discord-blurple/20 
+           hover:transform hover:scale-105;
+  }
+
+</style>
