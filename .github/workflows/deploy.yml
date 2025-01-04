@@ -29,11 +29,13 @@ jobs:
       - name: Build site
         run: npm run build
       - name: Create .nojekyll file
-        run: touch dist/.nojekyll
+        run: |
+          touch dist/.nojekyll
+          ls -la dist/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: ./dist
 
   deploy:
     needs: build
