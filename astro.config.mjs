@@ -6,6 +6,10 @@ export default defineConfig({
   build: {
     assets: '_astro'
   },
-  outDir: './dist',
-  publicDir: './public',
+  vite: {
+    build: {
+      assetsDir: '_astro',
+      base: '/MyPortfolio/'
+    }
+  }
 });
