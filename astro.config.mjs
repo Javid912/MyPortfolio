@@ -3,15 +3,19 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://javid912.github.io',
   base: '/MyPortfolio',
+  outDir: './dist',
   build: {
-    assets: 'assets'
+    assets: '_astro'
   },
   vite: {
-    base: '/MyPortfolio/',
     build: {
-      assetsDir: 'assets'
+      rollupOptions: {
+        output: {
+          assetFileNames: '_astro/[name][extname]',
+          chunkFileNames: '_astro/[name].js',
+          entryFileNames: '_astro/[name].js'
+        }
+      }
     }
-  },
-  outDir: './dist',
-  publicDir: './public'
+  }
 });
