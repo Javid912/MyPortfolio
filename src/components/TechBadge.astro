@@ -1,0 +1,106 @@
+---
+interface Props {
+  tech: string;
+}
+
+const { tech } = Astro.props;
+
+// Map of technology names to their logos and colors
+const techConfig = {
+  Python: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    color: "bg-[#3776AB]/10 text-[#3776AB]"
+  },
+  PostgreSQL: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    color: "bg-[#336791]/10 text-[#336791]"
+  },
+  Docker: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    color: "bg-[#2496ED]/10 text-[#2496ED]"
+  },
+  Airflow: {
+    logo: "https://cdn.jsdelivr.net/gh/apache/airflow/raw/main/docs/apache-airflow/img/logos/airflow_64x64_emoji_transparent.png",
+    color: "bg-[#017CEE]/10 text-[#017CEE]"
+  },
+  dbt: {
+    logo: "https://seeklogo.com/images/D/dbt-logo-500AB0BAA7-seeklogo.com.png",
+    color: "bg-[#FF694B]/10 text-[#FF694B]"
+  },
+  GCP: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+    color: "bg-[#4285F4]/10 text-[#4285F4]"
+  },
+  BigQuery: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+    color: "bg-[#4285F4]/10 text-[#4285F4]"
+  },
+  LangChain: {
+    logo: "https://python.langchain.com/img/favicon.ico",
+    color: "bg-[#121212]/10 text-[#121212]"
+  },
+  OpenAI: {
+    logo: "https://cdn.worldvectorlogo.com/logos/openai-2.svg",
+    color: "bg-[#412991]/10 text-[#412991]"
+  },
+  AI: {
+    logo: "https://cdn-icons-png.flaticon.com/512/2103/2103832.png",
+    color: "bg-[#FF4B4B]/10 text-[#FF4B4B]"
+  },
+  NLP: {
+    logo: "https://cdn-icons-png.flaticon.com/512/2103/2103845.png",
+    color: "bg-[#00A67E]/10 text-[#00A67E]"
+  },
+  Transformers: {
+    logo: "https://huggingface.co/front/assets/huggingface_logo.svg",
+    color: "bg-[#FFD21E]/10 text-[#FFD21E]"
+  },
+  Kubernetes: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+    color: "bg-[#326CE5]/10 text-[#326CE5]"
+  },
+  CICD: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
+    color: "bg-[#D24939]/10 text-[#D24939]"
+  },
+  IaC: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+    color: "bg-[#7B42BC]/10 text-[#7B42BC]"
+  },
+  Git: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    color: "bg-[#F05032]/10 text-[#F05032]"
+  },
+  GitHub: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    color: "bg-[#181717]/10 text-[#181717]"
+  },
+  VSCode: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    color: "bg-[#007ACC]/10 text-[#007ACC]"
+  },
+  Jupyter: {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
+    color: "bg-[#F37626]/10 text-[#F37626]"
+  },
+  ETL: {
+    logo: "https://cdn-icons-png.flaticon.com/512/6147/6147387.png",
+    color: "bg-[#FF694B]/10 text-[#FF694B]"
+  }
+};
+
+const config = techConfig[tech] || {
+  logo: "https://cdn-icons-png.flaticon.com/512/2103/2103832.png",
+  color: "bg-discord-text/10 text-discord-text"
+};
+---
+
+<div class={`inline-flex items-center gap-2 px-3 py-1 rounded-lg ${config.color} transition-all duration-300 hover:scale-105`}>
+  <img
+    src={config.logo}
+    alt={`${tech} logo`}
+    class="w-4 h-4 object-contain"
+    loading="lazy"
+  />
+  <span class="text-sm font-medium">{tech}</span>
+</div>

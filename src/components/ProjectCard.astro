@@ -1,0 +1,107 @@
+---
+import TechBadge from './TechBadge.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  github: string;
+  isHighlighted?: boolean;
+  demoUrl?: string;
+  status?: 'Public' | 'Private';
+  lastUpdated?: string;
+}
+
+const { 
+  title, 
+  description, 
+  tags, 
+  github, 
+  isHighlighted = false,
+  demoUrl,
+  status = 'Public',
+  lastUpdated
+} = Astro.props;
+---
+
+<div class={`
+  relative group rounded-xl p-6 h-full transition-all duration-300
+  ${isHighlighted 
+    ? 'bg-discord-blurple/10 hover:bg-discord-blurple/20' 
+    : 'bg-discord-dark hover:bg-discord-dark/80'}
+`}>
+  <!-- Status Badge -->
+  <div class="absolute top-4 right-4 flex items-center space-x-2">
+    <span class={`
+      px-2 py-1 rounded-full text-xs font-medium
+      ${status === 'Public' ? 'bg-discord-green/20 text-discord-green' : 'bg-discord-blurple/20 text-discord-blurple'}
+    `}>
+      {status}
+    </span>
+  </div>
+
+  <!-- Project Title -->
+  <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-discord-blurple transition-colors">
+    {title}
+  </h3>
+
+  <!-- Description -->
+  <p class="text-discord-text mb-6">
+    {description}
+  </p>
+
+  <!-- Tech Stack -->
+  <div class="mb-6 flex flex-wrap gap-2">
+    {tags.map(tag => <TechBadge tech={tag} />)}
+  </div>
+
+  <!-- Links & Info -->
+  <div class="mt-auto flex items-center justify-between">
+    <div class="flex space-x-4">
+      <a 
+        href={github}
+        target="_blank"
+        class="inline-flex items-center space-x-2 text-discord-text hover:text-discord-blurple transition-colors"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>View Code</span>
+      </a>
+      {demoUrl && (
+        <a 
+          href={demoUrl}
+          target="_blank"
+          class="inline-flex items-center space-x-2 text-discord-text hover:text-discord-blurple transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+          <span>Live Demo</span>
+        </a>
+      )}
+    </div>
+    
+    {lastUpdated && (
+      <span class="text-sm text-discord-text">
+        Updated {lastUpdated}
+      </span>
+    )}
+  </div>
+
+  <!-- Hover Effect Overlay -->
+  <div class="absolute inset-0 border-2 border-transparent rounded-xl transition-all duration-300 group-hover:border-discord-blurple/50"></div>
+</div>
+
+<style>
+  /* Add smooth hover transitions */
+  .project-card {
+    transform: translateY(0);
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-4px);
+  }
+</style>

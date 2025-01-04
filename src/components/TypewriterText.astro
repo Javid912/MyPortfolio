@@ -1,0 +1,76 @@
+---
+interface Props {
+  words: string[];
+  typingSpeed?: number;
+  deletingSpeed?: number;
+  pauseTime?: number;
+}
+
+const { 
+  words, 
+  typingSpeed = 150, // Slower typing
+  deletingSpeed = 100, // Slower deleting
+  pauseTime = 3000 // Longer pause
+} = Astro.props;
+---
+
+<span class="typewriter inline-block min-h-[1.2em] text-white relative pr-[4px]">
+  <span class="cursor absolute right-0 top-0 h-full w-[3px] bg-[#5865F2]"></span>
+</span>
+
+<style>
+  .typewriter {
+    text-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+    letter-spacing: -0.02em;
+  }
+
+  .cursor {
+    animation: cursor-blink 1.1s step-end infinite;
+    box-shadow: 0 0 8px rgba(88, 101, 242, 0.6);
+  }
+
+  @keyframes cursor-blink {
+    from, to { opacity: 0 }
+    50% { opacity: 1 }
+  }
+</style>
+
+<script define:vars={{ words, typingSpeed, deletingSpeed, pauseTime }}>
+  const typewriter = document.querySelector('.typewriter');
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    const currentWord = words[wordIndex];
+    
+    const textSpan = typewriter.firstChild;
+    if (isDeleting) {
+      charIndex--;
+      textSpan.textContent = currentWord.substring(0, charIndex);
+      typewriter.style.opacity = '0.85';
+    } else {
+      charIndex++;
+      textSpan.textContent = currentWord.substring(0, charIndex);
+      typewriter.style.opacity = '1';
+    }
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      isDeleting = true;
+      setTimeout(type, pauseTime);
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      // Add a slight pause and fade effect between words
+      typewriter.style.opacity = '0';
+      setTimeout(() => {
+        typewriter.style.opacity = '1';
+        setTimeout(type, typingSpeed);
+      }, typingSpeed * 2);
+    } else {
+      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+  }
+
+  type();
+</script>
