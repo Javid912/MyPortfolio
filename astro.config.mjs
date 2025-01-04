@@ -13,9 +13,5 @@ export default defineConfig({
     }
   },
   outDir: './dist',
-  publicDir: './public',
-  trailingSlash: 'always',
-  experimental: {
-    assets: true
-  }
+  publicDir: './public'
 });
