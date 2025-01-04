@@ -7,9 +7,12 @@ export default defineConfig({
     assets: '_astro'
   },
   vite: {
+    base: '/MyPortfolio/',
     build: {
-      assetsDir: '_astro',
-      base: '/MyPortfolio/'
+      assetsDir: '_astro'
     }
-  }
+  },
+  outDir: './dist',
+  publicDir: './public',
+  trailingSlash: 'always'
 });
