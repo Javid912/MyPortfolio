@@ -14,6 +14,9 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/MyPortfolio/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=gg+sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 		<title>{title}</title>
 	</head>
 	<body class="min-h-screen relative">
@@ -41,12 +44,22 @@ const { title } = Astro.props;
 <style is:global>
 	:root {
 		--discord-blurple: #5865F2;
+		--discord-green: #57F287;
+		--discord-yellow: #FEE75C;
+		--discord-fuchsia: #EB459E;
+		--discord-red: #ED4245;
+		--discord-white: #FFFFFF;
 		--discord-dark: #36393F;
 		--discord-darker: #2F3136;
+		--discord-darkest: #202225;
+		--discord-text: #B9BBBE;
+		--discord-link: #00AFF4;
+		--discord-focus: #00B0F4;
+		--discord-hover: #4752C4;
 	}
 
 	html {
-		font-family: 'Archivo Black', system-ui, sans-serif;
+		font-family: 'gg sans', system-ui, sans-serif;
 		background: var(--discord-darker);
 		color: #ffffff;
 		scroll-behavior: smooth;
@@ -113,43 +126,43 @@ const { title } = Astro.props;
 
 	.floating-icon {
 		position: absolute;
-		font-size: 2rem;
-		opacity: 0.15;
-		left: var(--x);
+		font-size: 1.5rem;
+		opacity: 0.1;
+		animation: float-icon 15s linear infinite;
 		top: var(--y);
-		animation: floatIcon 10s linear infinite;
+		left: var(--x);
 		animation-delay: var(--delay);
-	}
-
-	@keyframes floatIcon {
-		0% {
-			transform: translate(0, 0) rotate(0deg);
-			opacity: 0;
-		}
-		25% {
-			opacity: 0.15;
-		}
-		75% {
-			opacity: 0.15;
-		}
-		100% {
-			transform: translate(100px, -100px) rotate(360deg);
-			opacity: 0;
-		}
 	}
 
 	@keyframes float {
 		0%, 100% {
-			transform: translate(0, 0) rotate(0deg) scale(1);
+			transform: translate(0, 0) rotate(0deg);
 		}
 		25% {
-			transform: translate(100px, 100px) rotate(90deg) scale(1.2);
+			transform: translate(100px, 50px) rotate(45deg);
 		}
 		50% {
-			transform: translate(200px, 50px) rotate(180deg) scale(1);
+			transform: translate(50px, 100px) rotate(90deg);
 		}
 		75% {
-			transform: translate(100px, -50px) rotate(270deg) scale(0.8);
+			transform: translate(-50px, 50px) rotate(45deg);
+		}
+	}
+
+	@keyframes float-icon {
+		0% {
+			transform: translateY(100vh) rotate(0deg);
+			opacity: 0;
+		}
+		10% {
+			opacity: 0.1;
+		}
+		90% {
+			opacity: 0.1;
+		}
+		100% {
+			transform: translateY(-100px) rotate(360deg);
+			opacity: 0;
 		}
 	}
 
